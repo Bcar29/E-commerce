@@ -1,0 +1,17 @@
+asgiref
+distlib
+Django
+pillow
+paypalrestsdk
+dj-database-url
+mysql-connector-python
+django-crispy-forms
+django-filter
+filelock
+platformdirs
+pytz
+sqlparse
+tzdata
+whitenoise
+django-cleanup
+validate_email

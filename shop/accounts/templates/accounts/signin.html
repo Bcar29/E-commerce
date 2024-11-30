@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+   <div class="card mb-3 col-md-4 mx-auto mt-5" >
+        <div class="card-body">
+            <div class="pt-4 pb-2">
+                <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                <p class="text-center ">Enter your username & password to login</p>
+            </div>
+            <form action="" method="POST" class="form m-auto">
+                {% csrf_token %}
+                
+                    <div class="form-group col-12">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" class="form-control">
+                    </div>
+                     
+                    <div class="form-group col-12">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control">
+                    </div>
+                    <div class="form-group col-12">
+                        <button type="submit" class="form-control bg-primary text-light">Connexion</button>
+                    </div>
+                    <div class="col-12">
+                        <p class=" mb-0">Vous n'avez pas de compte? <a href="{% url 'signup' %}">En creer un</a></p>
+                    </div>
+            </form>
+        </div>
+   </div>
+
+{% endblock %}

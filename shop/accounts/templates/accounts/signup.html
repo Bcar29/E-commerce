@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+   <div class="container-fluid img-thumbnail col-8 col-sm-7 col-md-4 mt-3" >
+        <div class="card-body">
+            <h2 class="text-center text-muted">S'inscrire</h2>
+            <form action="" method="POST" class="form ">
+                {% csrf_token %}
+                
+                <div class="form-group col-12">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" class="form-control">
+                </div>
+                
+                <div class="form-group col-12">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" class="form-control">
+                </div>
+                
+                <div class="form-group col-12">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control">
+                </div>
+
+                <div class="form-group col-12">
+                    <label for="password">Password-confirm</label>
+                    <input type="password" id="password2" name="password2" class="form-control">
+                    <i class="text text-danger">{{ msg }}</i>
+                </div>
+                
+                <div class="form-group col-12 d-flex">
+                    <button type="submit" class="form-control bg-primary text-center d-inline-block">s'inscrire</button>
+                    
+                </div>
+                <div class="col-12">
+                    <p class="smll mb-0">Avez vous déjà un compte? <a href="{% url 'signin' %}">Log in</a></p>
+                </div>
+
+            </form>
+       </div>
+   </div>
+
+{% endblock %}

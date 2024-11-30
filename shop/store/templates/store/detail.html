@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="content-detail">         
+        <div class="itmes-detail">
+            <div >
+                <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" class="img-fluid img-thumbnail ">
+            </div>
+            <div class="prix">
+                {% if user.is_authenticated %}            
+                    <span class="btn col-md-6 btn-success text-light">Prix : ${{ product.price }}</span>
+                    <a href="{% url 'store:add-to-cart' product.pk %}" class=" btn btn-primary col-md-6">Ajouter au panier</a>  
+                {% else %}
+                    <span class="btn col-md-12 btn-success text-light">Prix : ${{ product.price }}</span>    
+                {% endif %} 
+            </div>
+        </div>  
+        <div>
+            <p >{{ product.description }}</p>
+        </div>
+    </div>
+{% endblock %}

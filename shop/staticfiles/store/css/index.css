@@ -1,0 +1,48 @@
+*{
+    text-decoration: none;
+    
+}
+
+html, body{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+#content{
+    margin-top: 20px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content:space-around;
+    flex-wrap: wrap;
+    row-gap: 20px;
+}
+
+#content .items {
+    text-align: center;
+    box-shadow: 2px 2px 5px rgb(27, 27, 27);
+    margin: 1rem;
+    width: 15%;
+}
+
+
+#content .items h5 {
+    font-weight: 600;
+    font-size:16px;
+}
+
+#content img {
+
+    border: 1px solid whitesmoke;
+    /* border-radius: 3% ; */
+    position: relative;
+    left: 0.3%;
+    width: 99.50%;
+
+}
+
+.div {
+    color:rgb(5, 160, 160);
+    font-weight:700; 
+}

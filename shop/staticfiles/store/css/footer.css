@@ -1,0 +1,174 @@
+
+body a{
+  text-decoration: none ;
+}
+
+/* info section */
+.info_section {
+  margin-top: 10px;
+  /* background-color: #161616; */
+  color: #ffffff;
+  position: relative;
+  bottom: 0;
+
+}
+
+.info_section h6 {
+  font-weight: bold;
+}
+
+.info_section .info_form {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 45px;
+}
+
+.info_section .info_form h4 {
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.info_section .info_form form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.info_section .info_form form input {
+  background-color: #ffffff;
+  border: none;
+  width: calc(100% - 139px);
+  outline: none;
+  color: #000000;
+  height: 42.4px;
+  padding-left: 15px;
+}
+
+.info_section .info_form form input ::-webkit-input-placeholder {
+  color: #ffffff;
+  opacity: 0.2;
+}
+
+.info_section .info_form form input :-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 0.2;
+}
+
+.info_section .info_form form input ::-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 0.2;
+}
+
+.info_section .info_form form input ::placeholder {
+  color: #ffffff;
+  opacity: 0.2;
+}
+
+.info_section .info_form form button {
+  background-color: #f8bc1a;
+  display: inline-block;
+  padding: 9px 30px;
+  background-color: #f8bc1a;
+  border: 1px solid #f8bc1a;
+  color: #000000;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.info_section .info_form form button:hover {
+  background-color: transparent;
+  color: #f8bc1a;
+}
+
+.info_section h6 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.info_section p {
+  color: #cbc9c9;
+}
+
+.info_section ul {
+  padding: 0;
+}
+
+.info_section ul li {
+  list-style-type: none;
+  margin: 3px 0;
+}
+
+.info_section ul li a {
+  color: #cbc9c9;
+  text-decoration: none;
+}
+
+.info_section ul li a:hover {
+  color: #ffffff;
+}
+.info-social a:hover{
+  color: #ffffff;
+
+}
+
+.info_section .info_link-box a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 5px 0;
+  text-decoration: none;
+  
+
+}
+
+.info_section .info_link-box a:hover {
+  color: #ffffff;
+}
+
+
+
+.info_section .info_link-box a span {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+.info_section .info_link-box a:hover span {
+  color: #ffffff;
+}
+
+
+
+
+/* end info section */
+/* ce que j'ai ajouter */
+.container .row{
+  display: flex;
+  justify-content: space-around;
+ 
+}
+.info-social, .info_link-box{
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.info-social{
+  row-gap: 10px;
+ 
+}
+.fas, .fab{
+  font-size: 30px;
+}
+.fas span, .fab span{
+  font-size: 15px;
+  margin-left: 20px;
+  color: whitesmoke;
+}
+/*# sourceMappingURL=style.css.map */

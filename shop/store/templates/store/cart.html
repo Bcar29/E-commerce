@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+<!-- {% load multiplication_tag %} -->
+{% block content %}
+{% load static %}
+    <div class="container-fluid mt-3" style="min-height: 45vh;">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="text text-center">Le contenu de votre panier  </h5>
+                <table class="table table-striped table-bordered table-hover table-sm">
+                    <caption>le panier de {{ user.username }} </caption>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="text-center">Produit</th>
+                            <th class="text-center">quantité</th>
+                            <th class="text-center">Prix</th>
+                            <th class="text-center">Modifier</th>
+                        </tr>
+                    </thead>
+
+                    <tbody >
+                        {% for order in order_products %}
+                        <tr>
+                            <td class="text-center">{{ order.product.name }}</td>
+                            <td class="text-center">{{ order.quantity }}</td>
+                            <td class="text-center">${{ order.product.price|multiply:order.quantity }}</td>
+                            <td class="text-center">
+                                <span><i class="text-danger fas fa-minus" style="margin: 0 5px; "></i></span>
+                                <span><i class="text-success fas fa-plus" style="margin: 0 5px; "></i></span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-info" style="font-weight: 600;">Total à payer </td>
+                            <td colspan="2" style="text-align: end; font-weight: 600;"> ${{ montant }} </td>  
+                        </tr>
+                    </tfoot>
+                </table> 
+            </div>
+            <div class="col-md-6">
+                <h5 class="text text-center">Choisir le système de payement </h5>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 w-50">
+                            <form action="{% url 'store:checkout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn"><video src="{% static 'store/img/paypal.mp4' %}" class="img-fluid" muted loop autoplay></video></button>
+                            </form>
+                            {% comment %} <a href="" class="">
+                                <video src="{% static 'store/img/paypal.mp4' %}" class="img-fluid" muted loop autoplay></video>
+                            </a> {% endcomment %}
+                        </div>
+                        <div class="col-md-6 w-50">
+                            <a href="{% url 'store:form-pai' %}"class="">
+                                <img src="{% static 'store/img/om.jpg' %}" alt="" srcset="" class="img-fluid">
+                            </a>
+                            <a href="{% url 'store:cart-delete' %}"  class="form-control col-sm-12 bg-warning mt-1 text-center text-danger" style="font-weight:600;"> Vider le Panier</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% comment %} person : b.2=E3P7
+sb-f3opb33640559@personal.example.com
+
+busness : FtW96-B*
+sb-pfumt33673051@business.example.com {% endcomment %}

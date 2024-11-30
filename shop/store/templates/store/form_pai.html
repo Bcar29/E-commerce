@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-3" style="min-height: 58.2vh;">
+    <form action="{% url 'store:paiement' %}" method="POST" class="form col-12">
+        {% csrf_token %}
+
+        <div class="row">
+            <!-- formulaire de paiement -->
+            <div class="col-md-6">
+                <h5 class="text-center text-muted">Paiement</h5>
+                    
+                <div class="form-group col-12">
+                    <input type="number" id="tel" name="tel" class="form-control" placeholder="téléphone ">
+                </div>
+                
+                <div class="form-group col-12">
+                    <input type="text" id="montant" name="montant" readonly  value="${{ montant }}" class="form-control">  
+                </div>
+
+                <div class="form-group col-12">
+                    <button type="submit" class="form-control btn btn-success">effectuer</button>
+                </div>
+            </div>
+
+            <!-- formulaire d'addresse  -->
+            <div class="col-md-6">
+                <div class="form-group col-12">
+                    <h5 class="text text-center text-muted">Votre addresse de livraison</h5>
+                    <select name="pays" id=""  class="form-control" >
+                        <option value="" >------------votre pays------------</option>
+                        <option value="Guinee">Guinée</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Maroc">Maroc</option>
+                    </select>
+                </div>
+                 
+                <div class="form-group col-12">
+                    <input type="text" id="ville" name="ville"  class="form-control" placeholder="ville">
+                </div>
+
+                <div class="form-group col-12">                      
+                    <input type="text" id="zip" name="zip"  class="form-control" placeholder="addresse postale">
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div style="min-height: 61vh;">
+        <table class="table table-striped table-bordered table-hover table-sm" >
+            <caption>liste de commande non livré  </caption>
+            <thead class="thead-light">
+            <tr>
+                <th class="text-center">Client</th>
+                <th class="text-center">Address</th>
+                <th class="text-center">Date</th>
+                <th class="text-center">Etat</th>
+            </tr>
+            </thead>
+            {% for order in order_list %}
+            <tr>
+                <td class="text-center">{{ order.user }}</td>
+                <td class="text-center">{{ order.shippingaddress }}</td>
+                <td class="text-center">{{ order.ordered_date }}</td>
+                <td class="text-center"><a href="{% url 'store:editorder' pk=order.pk %}"> {{ order.delivred }} </a></td>
+            </tr>
+            {% endfor %}
+        </table> 
+    </div>
+
+{% endblock content %}

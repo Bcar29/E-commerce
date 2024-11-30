@@ -1,0 +1,50 @@
+{% load static %}
+{% load multiplication_tag %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'store/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/recu.css' %}">
+</head>
+<body>
+    <div class="div-recu border">
+        <h3 class="text-muted">ALFA SHOP <span ><i class="fas fa-times"></i></span></h3>
+        <div class="en-tete">
+            <div>
+                <h4 class="text-dark">Reçu : <span class="text-muted">{{ Order.pk }}</span></h4>
+                <h4 class="text-dark">Client : <span class="text-muted">{{ user}}</span></h4>
+            </div>
+            <div>
+                <h4 class="text-dark">Montant : <span class="text-muted">${{ Order.montant }}</span></h4>
+                <h4 class="text-dark">Date : <span class="text-muted">{{ Order.ordered_date }}</span></h4>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover table-sm">
+            <caption>
+                reçu d'achat
+                <a href="{% url 'store:recu' pk=39 %}" class="btn btn-success telecharger"><i class="fas fa-arrow-down"></i></a>
+            </caption>
+            <thead>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Prix unitaire en $</th>
+            </thead>
+            <tbody>
+                {% for order in order_products %}
+                    <tr>
+                        <td>{{ order.product.name }} </td>
+                        <td>{{ order.quantity }}</td>
+                        <td>{{ order.product.price|multiply:order.quantity }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div> 
+</body>
+</html>

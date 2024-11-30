@@ -1,0 +1,24 @@
+.div-recu{
+    max-width: 45%;
+    margin: 20px auto;
+
+    
+}
+
+.div-recu h3{
+    text-align: center;
+
+}
+.div-recu h3 span{
+    float: right;
+}
+
+.div-recu .telecharger{
+float: right;
+margin-right: 7px;
+
+}
+.div-recu .en-tete{
+    display: flex;
+    justify-content: space-around;
+}

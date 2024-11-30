@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h4 class="text-center text-muted">LISTE DE NOS PRODUITS</h4>
+<div id="content">
+    {% for item in products %}
+    <div class="card" style="width: 15rem;">
+      <a href="{% url 'store:detail' pk=item.pk %}" >
+        <img src="{{ item.thumbnail.url }}" alt="{{ item.name }}" class="img-fluid card-img-top" style="height: 240px;">
+      </a>
+      <!-- <img src="..." class="card-img-top" alt="..."> -->
+      <div class="card-body">
+          <h5 class="card-title">{{ item.name }}</h5>
+          <p class="card-text">{{ item.description|truncatewords:5 }}</p>
+          <a href="{% url 'store:detail' pk=item.pk %}" class="btn btn-secondary">voir plus ...</a>
+      </div>
+    </div>
+    {% endfor %}
+
+    </div>
+<!-- 
+    <div class="div-pagin">
+        <ul class="pagination justify-content-end mx-4">
+            <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+        </ul>
+    </div> -->
+
+    <!-- <div class="pagination">
+        <span class="step-links">
+            {% if products.has_previous %}
+                <a href="?page=1">&laquo; première</a>
+                <a href="?page={{ products.previous_page_number }}">précédent</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ products.number }} sur {{ products.paginator.num_pages }}.
+            </span>
+
+            {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}">suivant</a>
+                <a href="?page={{ products.paginator.num_pages }}">dernière &raquo;</a>
+            {% endif %}
+        </span>
+    </div> -->
+
+    <div class="div-pagin">
+        <ul class="pagination justify-content-end mx-4">
+            {% if products.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">&laquo;</a>
+                </li>
+                <!-- <li class="page-item">
+                    <a class="page-link" href="?page={{ products.previous_page_number }}">Précédent</a>
+                </li> -->
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">&laquo;</a>
+                </li>
+                <!-- <li class="page-item disabled">
+                    <a class="page-link" href="#">Précédent</a>
+                </li> -->
+            {% endif %}
+    
+            {% for num in products.paginator.page_range %}
+                {% if products.number == num %}
+                    <li class="page-item active">
+                        <a class="page-link" href="#">{{ num }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+    
+            {% if products.has_next %}
+                <!-- <li class="page-item">
+                    <a class="page-link" href="?page={{ products.next_page_number }}">Suivant</a>
+                </li> -->
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ products.paginator.num_pages }}"> &raquo;</a>
+                </li>
+            {% else %}
+                <!-- <li class="page-item disabled">
+                    <a class="page-link" href="#"></a>
+                </li> -->
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">&raquo; </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+    
+
+
+{% endblock content %}

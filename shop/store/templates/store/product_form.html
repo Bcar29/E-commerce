@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+   <div class="container-fluid img-thumbnail col-8 col-sm-7 col-md-4 " >
+    <h5 class="text-center text-muted">Ajout de produit</h5>
+       
+        <form action="{% url 'store:create' %}" method="POST" class="form ", enctype="multipart/form-data">
+            {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="form-control col-12 bg-info text-center d-inline-block">
+                    Ajouter
+                </button>
+
+        </form>
+   </div> 
+{% endblock %}

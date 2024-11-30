@@ -1,0 +1,48 @@
+.content-detail{
+    min-height: 68vh;
+}
+
+.content-detail .itmes-detail{
+    float: left;
+    width: 300px;
+    height: 320px;
+    margin: 10px 15px 15px 10px;
+
+
+}
+
+
+.content-detail .itmes-detail img{
+    width: 340px;
+    height: 290px;
+    border-radius: 5%;
+}
+
+.content-detail p{
+    position: relative;
+    top: 10px;
+    margin: 0 6px;
+    height: 320px;
+    overflow: auto;
+
+}
+
+.content-detail .itmes-detail .prix {
+    display: flex;
+    margin: 10px 3px;
+    column-gap: 2px;
+    
+}
+
+.content-detail .itmes-detail .prix span:hover{
+    cursor:auto !important;
+}
+
+
+@media screen and (max-width:576px) {
+
+    .content-detail p{
+        clear: left;
+    }
+    
+}

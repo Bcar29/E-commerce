@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="section contact m-4">
+
+    <div class="row gy-4">
+
+        <div class="col-xl-6">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="info-box card">
+                        <i class="bi bi-geo-alt"></i>
+                        <h3>Addresse</h3>
+                        <p>H108 HAFIA,<br>GUINNEE, GU 535022</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="info-box card">
+                        <i class="bi bi-telephone"></i>
+                        <h3>Nous Appellez</h3>
+                        <p>+224 621 68 24 96<br>+224 666 98 10 57</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="info-box card">
+                        <i class="bi bi-envelope"></i>
+                        <h3>Nos Email</h3>
+                        <p>info@example.com<br>contact@example.com</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="info-box card">
+                        <i class="bi bi-clock"></i>
+                        <h3>Jour Ouvert</h3>
+                        <p>Lundi - Samedi<br>08H:00 - 18H:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6">
+            <div class="card p-4">
+                <form action="{% url 'store:contact' %}" method="post" class="">
+                    {% csrf_token %}
+                    <div class="row gy-4">
+
+                        <div class="col-md-6 my-3">
+                            <input type="text" name="nom" class="form-control" placeholder="Votre Nom" required>
+                        </div>
+
+                        <div class="col-md-6  my-3">
+                            <input type="email" class="form-control" name="email" placeholder="Votre Email" required>
+                        </div>
+
+                        <div class="col-md-12 my-2">
+                            <input type="text" class="form-control" name="sujet" placeholder="Sujet" required>
+                        </div>
+
+                        <div class="col-md-12 my-3">
+                            <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                        </div>
+
+                        <div class="col-md-12 text-center" style="margin-top: 11px;">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+  </section>
+
+
+
+{% endblock %}

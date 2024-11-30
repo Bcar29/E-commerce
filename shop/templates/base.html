@@ -1,0 +1,269 @@
+{% load static %}
+{% load multiplication_tag %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfa Shoping</title>
+    <link rel="stylesheet" href="{% static 'store/css/bootstrap-reboot.min.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/all.min.css' %}">
+
+    {% comment %} <link href="{% static 'store/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"> {% endcomment %}
+    <link href="{% static 'store/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'store/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'store/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+    <link href="{% static 'store/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+    <link href="{% static 'store/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'store/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+    <link href="{% static 'store/css/style.css' %}" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{% static 'store/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/listproduct.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/detail.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/footer.css' %}">
+</head>
+<body style="background-color: #e3e3e3; min-height: 100vh; " >
+    <!-- debut header  -->
+    <header class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid " style="align-items: center;">
+            <a href="{% url 'store:home' %}" class="navbar-brand">
+                <span>Alfa</span>
+            </a>
+            
+            <span class="navbar-text">
+                Datascientist
+            </span>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-content">
+                <span class="navbar-toggler-icon" ></span>
+            </button>
+            <!-- debut navbar collapse -->
+            <div class="collapse navbar-collapse " id="navbar-content">
+                <ul class="navbar-nav" style="position: relative; top: 5px;">
+                    <li class="nav-item"><a href="{% url 'store:home' %}" class="nav-link text-info h5 ">Accueil</a></li>
+                    <li class="nav-item"><a href="{% url 'store:listproduct' %}" class="nav-link text-info h5">Produit</a></li>
+                    <li class="nav-item"><a href="{% url 'store:contact' %}" class="nav-link text-info h5">Contact</a></li>
+
+                    <!-- debut du dropdown -->
+                    <div class="dropdown mt-1">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                          Mon espace
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark bg-muted" aria-labelledby="dropdownMenuButton2">
+                            {% if user.is_superuser %}
+                            <li> 
+                                <a href="{% url 'store:create' %}" class="dropdown-item ">Ajouter</a>   
+                            </li>
+                            <li> 
+                                <a href="{% url 'store:alivre' %}" class="dropdown-item ">valider livraison</a>   
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            {% endif %}
+
+                            {% if user.is_authenticated %}
+                            <li> 
+                                <a href="{% url 'logout' %}" class="dropdown-item active">Logout</a>   
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="{% url 'signup' %}" class="dropdown-item">signup</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'signin' %}"  class="dropdown-item">sigIn</a>
+                            </li>
+                            {% endif %}
+
+                            <li><hr class="dropdown-divider"></li>
+                            {% if user.is_authenticated %}
+                                <li><a class="dropdown-item" href="{% url 'change' %}">Change password</a></li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="{% url 'password-reset' %}">Reset password</a></li>
+                        </ul>
+                    </div> 
+                    <!-- end dropdown -->
+                </ul>
+
+                <!-- formulaire de Rechercher -->
+                <div class="ml-auto mt-2 d-flex ">
+                    <form action="{% url 'store:search' %}" method="get" class="m-1">
+                        <div class="input-group">
+                            <input type="search" name="query" id="" placeholder="Rechercher" class="form-control">
+                            <div class="input-group-append"> 
+                                <button type="submit" class="btn btn-primary">che</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- end formulaire de Rechercher -->
+                    <div class="">
+                          
+                        {% if user.cart and user.cart.order_set.first.orderproduct_set.all.count  %}
+                            <a href="{% url 'store:cart' %}">
+                                 <i class="fas fa-cart-arrow-down" style="position: relative; top: 5px;"><sup style="color: antiquewhite;">{{ user.cart.order_set.first.orderproduct_set.all.count }}</sup></i>
+                            </a>
+                        {% endif %}
+
+                    </div> 
+                </div>
+            </div>
+            <!-- end navbar collapse -->  
+        </div>   
+    </header>
+    <!-- end header  -->
+
+    {% if messages %}
+        <div id="message-container">
+            {% for message in messages %}
+                <div class="alert {% if message.tags %} alert-{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+    {% block content %}
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    {% endblock %}
+
+<!-- debut footer  -->
+
+    <section class="info_section layout_padding2-top bg-dark">
+        <div class="container-fluid">
+            <div class="info_form">
+                <form action="">
+                    <input type="email" id="newslester" placeholder="Entre votre email pour vous inscrire à notre newslester">
+                    <div class="d-flex justify-content-end">
+                        <button>subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 offset-md-1">
+                    <h6>
+                        Menus
+                    </h6>
+                    <ul class="menus">
+                        <li class=" active">
+                            <a class="" href="{% url 'store:home' %}">Accueil <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="">
+                            <a class="" href="">Produit </a>
+                        </li>
+                        <li class="">
+                            <a class="" href="{% url 'store:contact' %}">Contact</a>
+                        </li>
+                        {% if not user.is_authenticated %}
+                            <li class="">
+                                <a class="" href="{% url 'signin' %}">Login</a>
+                            </li>
+                        {% else %}
+                            {% if user %}
+                                <li class="">
+                                    <a class="" href="{% url 'logout' %}">Logout</a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                </div>   
+
+
+                <div class="col-md-3">
+                    <h6>
+                        Nous Contactez
+                    </h6>
+                    <div class="info_link-box">
+                        <a href="">
+                            <i class="fas fa-location-dot"><span>GUINNEE, GU 535022</span></i>  
+                        </a> 
+                        <a href="">
+                            <i class="fas fa-phone-volume"><span>+224 621 68 24 96</span></i> 
+                        </a>
+                        <a href="">
+                            <i class="fas fa-square-envelope"><span>FansClub@gmail.com</span></i>      
+                        </a>
+                        <a href="">
+                            <i class="fas fa-envelope"><span>FansClub@gmail.com</span></i>      
+                        </a>
+                    </div>
+                </div>
+
+                <div class="info_social col-md-3">
+                    <h6>
+                        Nous Suivre sur
+                    </h6>
+                    <div class="info-social">
+                        <div>
+                            <a href="">
+                                <i class="fab fa-facebook"><span >Facebook</span></i>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="">
+                                <i class="fab fa-linkedin"><span>Linkedin</span></i>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="">
+                                <i class="fab fa-instagram"><span>Instagram</span></i>
+                            </a>
+                        </div>
+                        
+                        <div>
+                            <a href="">
+                                <i class="fab fa-twitter"><span>Twitter</span></i>
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <!-- </div> -->
+            </div>
+        </div>
+    </section>
+    
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></a>
+
+<!-- end footer -->
+    <script>
+        setTimeout( () => {
+            var messacontainer = document.getElementById('message-container')
+                if (messacontainer){
+                    messacontainer.style.display = 'none'
+                }
+        }, 4000)
+    </script>
+    
+    <!-- Vendor JS Files -->
+   <script src="{% static 'store/vendor/apexcharts/apexcharts.min.js' %}"></script>
+    <script src="{% static 'store/vendor/chart.js/chart.umd.js' %}"></script>
+    <script src="{% static 'store/vendor/echarts/echarts.min.js' %}"></script>
+    <script src="{% static 'store/vendor/quill/quill.min.js' %}"></script>
+    <script src="{% static 'store/vendor/simple-datatables/simple-datatables.js' %}"></script>
+    <script src="{% static 'store/vendor/tinymce/tinymce.min.js' %}"></script>
+    <script src="{% static 'store/vendor/php-email-form/validate.js' %}"></script>
+     
+    <!-- Template Main JS File -->
+    <script src="{% static 'store/js/main.js' %}"></script>
+    
+    
+    <script src="{% static 'store/js/jquery-3.7.1.js' %}"></script>
+
+    <script src="{% static 'store/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'store/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+</html>
+
+
+<!-- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit qui hic numquam ipsa quae, a tempore voluptate illum laboriosam mollitia soluta autem repudiandae atque voluptatibus! Amet quis aut eum qui?
+Eaque molestias corporis natus omnis odit. Temporibus cum minus consectetur corrupti fugiat. Natus nemo, fugiat voluptatibus iste temporibus eius repellendus rem numquam ex maxime aperiam eaque, fugit, deleniti quaerat quod.
+Doloribus amet repellendus maxime animi distinctio laboriosam neque recusandae non eaque voluptas fugit optio laudantium cupiditate velit ducimus similique, reiciendis dolorem voluptatum. Ipsam perspiciatis, architecto laudantium aperiam eum eius quae.
+Commodi modi dolore optio, laudantium minus aut iure nostrum iste, delectus, molestiae non? Aut omnis natus dolorum, nemo explicabo eos optio, numquam voluptatum temporibus ipsum soluta inventore, quae doloribus velit. -->
